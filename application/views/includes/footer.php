@@ -6,14 +6,14 @@
         margin-top: 2%;
         border-color: #E7E7E7;
         background-color: black;
-        background-image: -webkit-linear-gradient(top, #fff 0%, #f8f8f8 100%);
-        background-image:      -o-linear-gradient(top, #fff 0%, #f8f8f8 100%);
-        background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f8f8f8));
-        background-image:         linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
+        background-image: -webkit-linear-gradient(top, #000 0%, #000 100%);
+        background-image:      -o-linear-gradient(top, #000 0%, #000 100%);
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#000), to(#000));
+        background-image:         linear-gradient(to bottom, #000 0%, #000 100%);
     }
 </style>
 
-<footer id="footer" class="navbar-default">
+<footer id="footer">
     <div class="container">
         <div class="pull-left">
             Copyright &copy; Payo Nge'kost 2016

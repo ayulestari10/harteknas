@@ -186,7 +186,7 @@ section {
 
 #dashboard .dashboard-item .dashboard-link .dashboard-hover .dashboard-hover-content {
     position: absolute;
-    top: 50%;
+    
     width: 100%;
     height: 20px;
     margin-top: -12px;

@@ -4,12 +4,14 @@ class Pemilik extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('Pemilik_model');
-
+		$this->load->model('User_model');
+		
 		$id_pemilik = $this->session->userdata('id_pemilik');
 		if (!isset($id_pemilik)) {
 		   redirect('Login');
 		   exit;
 		}
+		$this->session->set_userdata('role', 'pemilik');
 	}
 
 	function index(){
@@ -54,26 +56,38 @@ class Pemilik extends CI_Controller{
 	}
 
 	function biodata(){
-		if($this->input->post('edit')){
-			$input = array (
-				'nama'				=> $this->input->post('nama'),
-				'profil'			=> $this->session->userdata('id_pemilik').'.jpg',
-				'alamat'			=> $this->input->post('alamat'),
-				'cp'					=> $this->input->post('cp')
+		$id_pemilik = $this->session->userdata('id_pemilik');
+		if($this->input->post('add_biodata')){
+			$input = array(
+				'nama'		=> $this->input->post('nama'),
+				'profil'	=> 'Pemilik-'.$id_pemilik.'.jpg',
+				'alamat'	=> $this->input->post('alamat'),
+				'cp'		=> $this->input->post('cp')
 			);
 			$this->Pemilik_model->update($id_pemilik, $input);
-			$this->Pemilik_model->do_upload($id_pemilik);
-			$this->session->set_flashdata('msg', '<div class="alert alert-success" style="text-align:center;">Data berhasil disimpan!</div>');
+			$this->Pemilik_model->do_upload_profil($id_pemilik);
 			redirect('Pemilik/biodata');
 			exit;
 		}
-
 		$data = array(
-			'title' 		=> 'Edit Kosan | Payo Ngekos',
-			'content' 	=> 'biodata',
-			'dt'		 		=> $this->Pemilik_model->get_data_byId($id_pemilik)
-		);
-		$this->load->view('includes/template',$data);
+	      'title'		=> 'Payo Ngekos',
+	      'content'		=> 'biodata',
+	      'dt'			=> $this->Pemilik_model->get_data_byId($id_pemilik)
+	    );
+	    $this->load->view('includes/template', $data);
+	}
+
+	function list_user(){
+		
+		$nama_kosan	= $this->Pemilik_model->get_nama_kosan($this->session->userdata('id_pemilik'));
+		
+		$data = array(
+	      'title'		=> 'List Booking | Payo Ngekos',
+	      'content'		=> 'list_user',
+	      'dt'			=> $this->User_model->get_data_bykosan($nama_kosan)
+	    );
+	    
+	    $this->load->view('includes/template', $data);
 	}
 
 }

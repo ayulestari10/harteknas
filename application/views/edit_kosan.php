@@ -1,3 +1,9 @@
+<style type="text/css">
+  .img_kosan{
+    width: 250px; height: 250px; border: 1px solid black;
+  }
+</style>
+
 <div class="container">
 <?php
   $id_pemilik   = $this->session->userdata('id_pemilik');
@@ -13,7 +19,6 @@
     echo form_open_multipart('Pemilik/edit/');
   }
 ?>
-
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div style="margin-bottom:10%; ">
@@ -23,9 +28,14 @@
             <label for="harga">Nama Kosan :</label>
             <input type="text" class="form-control" id="nama_kosan" name="nama_kosan" value="<?= $dt->nama_kosan ?>" required>
           </div>
+          <?php if(isset($dt->foto1)): ?>
+            <div class="img_kosan">
+              <img src="<?= base_url('foto/kosan/'.$dt->id_pemilik.'.jpg') ?>" width="250" height="250">
+            </div>
+          <?php endif; ?>
           <div class="form-group">
             <label for="foto1">Upload Foto</label>
-        		<input type="file" id="upload" name="foto1" required>
+        		<input type="file" name="userfile" required>
           </div>
           <div class="form-group">
             <label for="harga">Harga Sewa/ Tahun :</label>

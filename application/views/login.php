@@ -13,7 +13,7 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div style="margin-bottom: 10%;">
-					<h2>LOGIN</h2>
+					<h2>LOGIN MEMBER</h2>
 					<div class="pilih">
 						<a href="<?= base_url('Login/user') ?>">Member Kosan</a> | <a href="<?= base_url('Login/pemilik') ?>">Pemilik Kosan</a>
 					</div>

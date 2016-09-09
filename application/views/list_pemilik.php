@@ -1,8 +1,8 @@
 <div class="container">
   <h1>DAFTAR PRMILIK KOSAN</h1>
   <div class="">
-    <a href="" class="btn btn-warning btn-sm">List Booking</a>
-    <a href="" class="btn btn-info btn-sm">List Pembeli</a>
+    <a href="<?= base_url('Admin') ?>" class="btn btn-warning btn-sm">List Booking</a>
+    <a href="<?= base_url('Admin/user') ?>" class="btn btn-info btn-sm">List Pembeli</a>
   </div>
   <table class="table table-striped">
     <thead>
@@ -15,20 +15,22 @@
         <th>Opsi</th>
       </tr>
     </thead>
-    <?php $a=1; while ($a <= 10){ ?>
       <tbody>
+      <?php 
+        $i=0;
+        foreach($dt as $row): 
+      ?>
         <tr>
-          <td><?= $a ?></td>
-          <td>Moh. Ali</td>
-          <td>Melati</td>
-          <td>Gg. Buntu</td>
-          <td>085763182045</td>
+          <td><?= ++$i ?></td>
+          <td><?= $row->nama ?></td>
+          <td><?= $row->nama_kosan ?></td>
+          <td><?= $row->alamat ?></td>
+          <td><?= $row->cp ?></td>
           <td>
-            <a href="" class="btn btn-danger btn-sm">Hapus List</a>
+            <a href="<?= base_url('Admin/delete_pemilik/'.$row->id_pemilik) ?>" class="btn btn-danger btn-sm">Hapus</a>
           </td>
         </tr>
+      <?php endforeach; ?>
       </tbody>
-    <?php $a++; } ?>
-
   </table>
 </div>

@@ -20,8 +20,16 @@ class Home extends CI_Controller{
 
     $data = array(
       'title'     => 'Payo Ngekos',
-      'content'   => 'dashboard',
+      'content'   => 'detail',
       'dt'        => $this->Pemilik_model->get_data_byId($id_pemilik)
+    );
+    $this->load->view('includes/template', $data);
+  }
+
+  function index(){
+    $data = array(
+      'title'     => 'Payo Ngekos',
+      'content'   => 'coba'
     );
     $this->load->view('includes/template', $data);
   }

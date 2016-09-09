@@ -5,14 +5,15 @@ class Pemilik_model extends CI_Model
   private $key,$table;
   var $galerry_path;
   var $galerry_path_url;
+  var $profil;
 
   function __construct()
   {
     parent::__construct();
     $this->key                = "id_pemilik";
     $this->table              = "pemilik";
-    $this->galerry_path       = realpath(APPPATH.'../kosan');
-    $this->galerry_path_url   = base_url().'foto/kosan';
+    $this->galerry_path       = realpath(APPPATH.'../foto/kosan');
+    $this->profil             = realpath(APPPATH.'../foto/profil');
   }
 
   public function get_all()
@@ -37,6 +38,15 @@ class Pemilik_model extends CI_Model
     return $id_pemilik;
   }
 
+  function get_nama_kosan($id_pemilik){
+    $this->db->where($this->key, $id_pemilik);
+    $query = $this->db->get($this->table);
+    foreach($query->result() as $row){
+      $nama_kosan = $row->nama_kosan;
+    }
+    return $nama_kosan;
+  }
+
   public function get_data_byId($id_pemilik)
   {
     $this->db->where($this->key, $id_pemilik);
@@ -50,10 +60,11 @@ class Pemilik_model extends CI_Model
     return $query;
   }
 
-  function do_upload_Profil($id_pemilik){
+  function do_upload_profil($id_pemilik){
     $config = array (
       'file_name' 	     => $id_pemilik.'.jpg',
-      'upload_path'	     => '/foto/profil/pemilik',
+      'upload_path'	     => '/foto/profil',
+      'upload_path'      => $this->profil,
       'allowed_types'    => 'jpg|jpeg|gif|png',
       'max_size' 		     => 2000
     );
@@ -64,12 +75,13 @@ class Pemilik_model extends CI_Model
   function do_upload($id_pemilik){ 
     $config = array (
       'file_name' 	     => $id_pemilik.'.jpg',
-      'upload_path'      => '/foto/kosan',
       'allowed_types'    => 'jpg|jpeg|gif|png',
+      'upload_path'      => $this->galerry_path,
       'max_size' 		     => 5000
     );
     $this->load->library('upload', $config);
     $this->upload->do_upload();
+    $image_data = $this->upload->data();
   }
 
   function insert($data){

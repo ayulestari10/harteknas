@@ -2,7 +2,7 @@
 	h2{text-align: center; margin-bottom: 2%;}
 	a{list-style: none;}
 </style>
-<?php echo form_open('Login/pemilik'); ?>
+<?php echo form_open('Login/admin'); ?>
 	<div class="container">
 	<?php
 		$msg = $this->session->flashdata('msg');
@@ -12,8 +12,8 @@
 	?>
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<div style="margin-bottom: 10%;">
-					<h2>LOGIN PEMILIK</h2>
+				<div style="margin-bottom: 10%;">	
+					<h2>LOGIN ADMIN</h2>
 					<div class="pilih">
 						<a href="<?= base_url('Login/user') ?>">Member Kosan</a> | <a href="<?= base_url('Login/pemilik') ?>">Pemilik Kosan</a>
 					</div>

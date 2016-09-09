@@ -23,16 +23,17 @@ class Login extends CI_Controller{
 			$data_admin = $this->Login_model->cek_login_admin($data);
 			if($this->Login_model->rows == 1){
 				$this->session->set_userdata($data);
+				$this->session->userdata('role', 'admin');
 				redirect('Admin');
 			} else {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger" style="text-align:center;">Gagal Login!</div>');
-				redirect('daftar_login');
+				redirect('login');
 				exit;
 			}
 		}
 		$data = array(
 			'title'		=> 'LOGIN | Payo Ngekos',
-			'content'	=> 'login_pemilik'
+			'content'	=> 'login_admin'
 		);
 		$this->load->view('includes/template', $data);
 	}

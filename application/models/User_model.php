@@ -10,8 +10,7 @@ class User_model extends CI_Model{
 		parent::__construct();
 		$this->table 				= 'user';
 		$this->key 					= 'id_user';
-		$this->galerry_path			= realpath(APPPATH.'../foto');
-		$this->galerry_path_url		= base_url().'foto/';
+		$this->galerry_path			= realpath(APPPATH.'../foto/profil');
 	}
 
 	function get_all(){
@@ -23,6 +22,18 @@ class User_model extends CI_Model{
 		$this->db->where('username', $username);
 		$query = $this->db->get($this->table);
 		return $query->row();
+	}
+
+	function get_data_byId($id_user){
+		$this->db->where($this->key, $id_user);
+		$query = $this->db->get($this->table);
+		return $query->row();
+	}
+
+	function get_data_bykosan($kosan){
+		$this->db->where('nama_kosan', $kosan);
+		$query = $this->db->get($this->table);
+		return $query->result();
 	}
 
 	function get_id($username){
@@ -50,7 +61,7 @@ class User_model extends CI_Model{
 	function get_data_byConditional($condition){
 		$this->db->where($condition);
 		$query = $this->db->get($this->table);
-		return $query;
+		return $query->row();
 	}
 
 	function do_upload($id_user){
@@ -64,16 +75,6 @@ class User_model extends CI_Model{
 
 		$this->upload->do_upload();
 		$image_data = $this->upload->data();
-
-		$config = array(
-			'source_image' 	=> $image_data['full_path'],
-			'new_image'			=> $this->galerry_path.'/carousel',
-			'maintain_ratio'=> true,
-			'width'					=> 1024,
-			'height'				=> 700
-		);
-		$this->load->library('image_lib', $config);
-		$this->image_lib->resize();
 	}
 }
 
