@@ -78,11 +78,11 @@ class User extends CI_Controller{
 	function cetak(){
 		$id_user = $this->session->userdata('id_user');
 
-		$data_pemilik = $this->
+		//$data_pemilik = $this->Pemilik_model->get_
 
 		$data = array(
-        	'dt_user' 		=> $this->User_model->get_data_byId($id_user),
-        	'cp_pemilik'	=> $cp
+        	'dt_user' 		=> $this->User_model->get_data_byId($id_user)
+        	//cp_pemilik'	=> $cp
         );
         $html = $this->load->view('bukti', $data, true);
  

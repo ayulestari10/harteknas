@@ -61,7 +61,7 @@ class User_model extends CI_Model{
 	function get_data_byConditional($condition){
 		$this->db->where($condition);
 		$query = $this->db->get($this->table);
-		return $query->row();
+		return $query;
 	}
 
 	function do_upload($id_user){
